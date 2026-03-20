@@ -1,7 +1,28 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl -sL \"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=85&fm=jpg&fit=crop\" -o \"services-recipes.jpg\")"
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=85&fm=jpg&fit=crop\" -o \"services-recipes.jpg\")",
+      "Bash(grep -E '\\\\.\\(php|css|js|html\\)$|^d')",
+      "Bash(ls \"c:\\\\OSPanel\\\\home\\\\vetapteka\\\\wp-content\\\\themes\\\\ВЕТАПТЕКА\\\\.claude\\\\worktrees\"\" 2>/dev/null || echo \"no worktrees dir \")",
+      "Bash(ls /c/OSPanel/home/vetapteka/wp-content/themes/ВЕТАПТЕКА/*.php)",
+      "Bash(ls c:/OSPanel/home/vetapteka/wp-content/themes/VetaptekaPRO/*.css)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "Bash(c:/OSPanel/system/mysql/bin/mysql.exe -u root --password= -e \"SELECT option_value FROM vetapteka_wp.wp_options WHERE option_name IN \\(''siteurl'',''home'',''template'',''stylesheet''\\);\")",
+      "Bash(c:/OSPanel/system/mysql/bin/mysql.exe -u root -e \"SELECT option_value FROM vetapteka_wp.wp_options WHERE option_name IN \\(''siteurl'',''home'',''template'',''stylesheet''\\);\")",
+      "Bash(c:/OSPanel/system/MySQL-8.0/bin/mysql.exe -u root --password= -e \"SELECT option_name, option_value FROM vetapteka_wp.wp_options WHERE option_name IN \\(''siteurl'',''home'',''template'',''stylesheet''\\);\")",
+      "Bash(cmd /c \"dir C:\\\\OSPanel\\\\system\\\\MySQL-8.0\\\\bin\\\\mysql.exe 2>nul\")",
+      "Bash(cmd /c \"where mysql 2>nul\")",
+      "Bash(cmd //c 'dir C:\\\\OSPanel\\\\system')",
+      "Bash(cmd //c 'dir C:\\\\OSPanel\\\\system\\\\bin')",
+      "Bash(cmd //c 'dir C:\\\\OSPanel\\\\modules')",
+      "Bash(cmd //c \"C:\\\\OSPanel\\\\modules\\\\MySQL-8.0\\\\bin\\\\mysql.exe -u root --password= -e \"\"SELECT option_name, option_value FROM vetapteka_wp.wp_options WHERE option_name IN \\(''siteurl'',''home'',''template'',''stylesheet''\\);\"\"\")",
+      "Bash(cmd //c \"C:\\\\OSPanel\\\\modules\\\\MySQL-8.0\\\\bin\\\\mysql.exe -h MySQL-8.0 -u root -e \"\"SELECT option_name, option_value FROM vetapteka_wp.wp_options WHERE option_name IN \\(''siteurl'',''home'',''template'',''stylesheet''\\);\"\"\")",
+      "Bash(cmd //c \"C:\\\\OSPanel\\\\modules\\\\Apache-2.4\\\\bin\\\\httpd.exe -S 2>&1\")",
+      "Bash(cmd //c \"ping -n 1 vetapteka 2>&1\")",
+      "Bash(cmd //c \"ping -n 1 vetapteka.local 2>&1\")",
+      "Bash(curl -sk -o /tmp/vetapteka_page.html \"https://vetapteka/\")",
+      "Bash(curl -sk --resolve \"vetapteka:443:127.0.1.11\" -o /tmp/vetapteka_page.html \"https://vetapteka/\")",
+      "Bash(curl -sk \"https://vetapteka/wp-content/themes/VetaptekaPRO/css/style.css?ver=1.0.1\")"
     ]
   }
 }

@@ -6,17 +6,19 @@
 'use strict';
 
 /* ── DOM refs ────────────────────────────────────────────────── */
-const header      = document.getElementById('site-header');
-const burgerBtn   = document.getElementById('burger-btn');
-const mobileMenu  = document.getElementById('mobile-menu');
-const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
-const faqItems    = document.querySelectorAll('.faq-item');
-const certBtn     = document.getElementById('cert-btn');
-const lightbox    = document.getElementById('lightbox');
-const lbBackdrop  = document.getElementById('lightbox-backdrop');
-const lbClose     = document.getElementById('lightbox-close');
-const lbImg       = document.getElementById('lightbox-img');
-const lbCaption   = document.getElementById('lightbox-caption');
+const header        = document.getElementById('site-header');
+const burgerBtn     = document.getElementById('burger-btn');
+const mobileMenu    = document.getElementById('mobile-menu');
+const menuOverlay   = document.getElementById('menu-overlay');
+const menuCloseBtn  = document.getElementById('mobile-menu-close');
+const mobileLinks   = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
+const faqItems      = document.querySelectorAll('.faq-item');
+const certBtn       = document.getElementById('cert-btn');
+const lightbox      = document.getElementById('lightbox');
+const lbBackdrop    = document.getElementById('lightbox-backdrop');
+const lbClose       = document.getElementById('lightbox-close');
+const lbImg         = document.getElementById('lightbox-img');
+const lbCaption     = document.getElementById('lightbox-caption');
 
 /* ════════════════════════════════════════════════════════════
    1. STICKY HEADER — add .scrolled class after 80px scroll
@@ -33,51 +35,93 @@ onScroll(); // run once on load
 
 
 /* ════════════════════════════════════════════════════════════
-   2. BURGER MENU
+   2. BURGER MENU — правая панель
 ════════════════════════════════════════════════════════════ */
+
+// Ширина скроллбара — измеряем один раз до любых манипуляций с overflow
+const _sw = window.innerWidth - document.documentElement.clientWidth;
+document.documentElement.style.setProperty('--scrollbar-w', _sw + 'px');
+
+let _closeTimer = null;
+const MENU_DURATION = 420; // чуть дольше CSS transition (0.38s)
+
 const openMenu = () => {
-  header.classList.add('menu-open');
+  clearTimeout(_closeTimer);
+
+  // ── 1. Сначала компенсируем ширину скроллбара ──────────────
+  // Делаем ДО скрытия overflow, чтобы контент не прыгал
+  if (_sw > 0) {
+    document.body.style.paddingRight    = _sw + 'px';
+    header.style.paddingRight           = _sw + 'px';
+  }
+
+  // ── 2. Блокируем прокрутку ─────────────────────────────────
+  // Нужно оба: html + body — только body не работает в Safari/iOS
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  // ── 3. Анимация: панель + оверлей ─────────────────────────
+  header.classList.add('menu-open');          // бургер → ×, панель вылезает
+  document.body.classList.add('menu-open');   // оверлей появляется
+
   burgerBtn.setAttribute('aria-expanded', 'true');
   burgerBtn.setAttribute('aria-label', 'Закрыть меню');
   mobileMenu.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+  menuOverlay.setAttribute('aria-hidden', 'false');
+
+  // Focus trap
+  requestAnimationFrame(() => {
+    const first = mobileMenu.querySelector('.mobile-menu-close, .mobile-nav-link');
+    if (first) first.focus();
+  });
 };
 
 const closeMenu = () => {
-  header.classList.remove('menu-open');
+  // ── 1. Запускаем анимации закрытия ────────────────────────
+  header.classList.remove('menu-open');         // панель уходит вправо
+  document.body.classList.remove('menu-open');  // оверлей тает
+
   burgerBtn.setAttribute('aria-expanded', 'false');
   burgerBtn.setAttribute('aria-label', 'Открыть меню');
   mobileMenu.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  menuOverlay.setAttribute('aria-hidden', 'true');
+
+  // ── 2. Восстанавливаем скролл ПОСЛЕ анимации ──────────────
+  // Если убрать раньше — скроллбар появляется во время анимации → скачок
+  clearTimeout(_closeTimer);
+  _closeTimer = setTimeout(() => {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow            = '';
+    document.body.style.paddingRight        = '';
+    header.style.paddingRight               = '';
+  }, MENU_DURATION);
 };
 
 burgerBtn.addEventListener('click', () => {
-  const isOpen = header.classList.contains('menu-open');
-  isOpen ? closeMenu() : openMenu();
+  header.classList.contains('menu-open') ? closeMenu() : openMenu();
 });
 
-// Close on any mobile nav link click
-mobileLinks.forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
+// Кнопка × внутри панели
+if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
 
-// Close on outside click
-document.addEventListener('click', (e) => {
-  if (
-    header.classList.contains('menu-open') &&
-    !header.contains(e.target)
-  ) {
-    closeMenu();
-  }
-});
+// Клик по оверлею
+if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
-// Close on ESC
+// Клик по ссылкам меню
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+// ESC
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (header.classList.contains('menu-open')) closeMenu();
     if (!lightbox.hidden) closeLightbox();
   }
 });
+
+// Изменение ориентации / ресайз — закрываем чтобы не было артефактов
+window.addEventListener('resize', () => {
+  if (header.classList.contains('menu-open')) closeMenu();
+}, { passive: true });
 
 
 /* ════════════════════════════════════════════════════════════
@@ -135,17 +179,15 @@ const openLightbox = (src, alt) => {
   lbCaption.textContent = alt;
 
   lightbox.hidden = false;
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('lightbox-open');
 
-  // Focus trap — move focus to close button
   requestAnimationFrame(() => lbClose.focus());
 };
 
 const closeLightbox = () => {
   lightbox.hidden = true;
-  document.body.style.overflow = '';
+  document.body.classList.remove('lightbox-open');
   lbImg.src = '';
-  // Return focus to cert button
   if (certBtn) certBtn.focus();
 };
 

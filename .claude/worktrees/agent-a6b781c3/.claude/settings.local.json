@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=640&q=85&fm=jpg&fit=crop\" -o \"services-recipes.jpg\")",
+      "Bash(grep -E '\\\\.\\(php|css|js|html\\)$|^d')"
+    ]
+  }
+}

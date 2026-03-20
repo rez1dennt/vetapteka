@@ -53,7 +53,7 @@
     <div class="container header-inner">
 
       <a href="#hero" class="logo" aria-label="ВЕТАПТЕКА.ПРО — вернуться на главную">
-        <img src="images/logo.png" alt="Логотип ВЕТАПТЕКА.ПРО" width="52" height="52" class="logo-img">
+        <img src="./images/logo.png" alt="Логотип ВЕТАПТЕКА.ПРО" width="52" height="52" class="logo-img">
         <span class="logo-text">ВЕТАПТЕКА<span class="logo-pro">.ПРО</span></span>
       </a>
 
@@ -88,29 +88,43 @@
       </button>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <nav aria-label="Мобильная навигация">
-        <ul class="mobile-nav-list" role="list">
-          <li><a class="mobile-nav-link" href="#about">О нас</a></li>
-          <li><a class="mobile-nav-link" href="#services">Услуги</a></li>
-          <li><a class="mobile-nav-link" href="#solutions">Решения</a></li>
-          <li><a class="mobile-nav-link" href="#approach">Подход</a></li>
-          <li><a class="mobile-nav-link" href="#certificate">Лицензия</a></li>
-          <li><a class="mobile-nav-link" href="#contacts">Контакты</a></li>
-          <li><a class="mobile-nav-link" href="#faq">FAQ</a></li>
-          <li>
-            <a class="mobile-nav-cta" href="tel:+79168096136">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-              +7 (916) 809-61-36
-            </a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </header>
+
+  <!-- Overlay + панель меню — вне хедера, чтобы backdrop-filter хедера
+       не ломал position:fixed у панели (браузерный баг со stacking context) -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-brand">ВЕТАПТЕКА<em>.ПРО</em></span>
+      <button class="mobile-menu-close" id="mobile-menu-close" type="button" aria-label="Закрыть меню">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <nav aria-label="Мобильная навигация">
+      <ul class="mobile-nav-list" role="list">
+        <li><a class="mobile-nav-link" href="#about">О нас</a></li>
+        <li><a class="mobile-nav-link" href="#services">Услуги</a></li>
+        <li><a class="mobile-nav-link" href="#solutions">Решения</a></li>
+        <li><a class="mobile-nav-link" href="#approach">Подход</a></li>
+        <li><a class="mobile-nav-link" href="#certificate">Лицензия</a></li>
+        <li><a class="mobile-nav-link" href="#contacts">Контакты</a></li>
+        <li><a class="mobile-nav-link" href="#faq">FAQ</a></li>
+        <li>
+          <a class="mobile-nav-cta" href="tel:+79168096136">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            +7 (916) 809-61-36
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <main id="main-content">
 
@@ -121,7 +135,7 @@
       <div class="container hero-content">
         <p class="hero-eyebrow">Компаундинг · Москва</p>
         <h1 class="hero-title">Препараты для<br>питомцев, которых<br><em>нет в аптеке</em></h1>
-        <p class="hero-subtitle">Изготавливаем лекарства по рецепту ветеринара — нужная доза, подходящий вкус, удобная форма. Для кошек, собак, лошадей и экзотики.</p>
+        <p class="hero-subtitle">Изготавливаем лекарства по рецепту ветеринара — нужная доза, подходящий вкус, удобная форма. Для кошек, собак, лошадей и экзотов.</p>
         <a class="btn btn-gold hero-btn" href="tel:+79168096136">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -161,7 +175,7 @@
       <div class="container about-inner">
         <div class="about-image-wrap">
           <img
-            src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=900&q=80&auto=format&fit=crop"
+            src="././images/photo-1576201836106-db1758fd1c97.png"
             alt="Ветеринар осматривает собаку — внимательный подход к каждому пациенту"
             loading="lazy"
             width="900" height="600"
@@ -176,7 +190,7 @@
           <span class="label">Кто мы</span>
           <h2 class="section-title" id="about-title">Делаем то, чего<br>нет в обычной аптеке</h2>
           <p class="about-p">Иногда нужный препарат просто недоступен: нет нужной дозировки, неподходящая форма, животное отказывается принимать. Мы решаем именно эти задачи.</p>
-          <p class="about-p">Наша компаундинговая аптека изготавливает препараты по рецептам ветеринаров — с точным расчётом дозы под вес, вид и состояние животного. Работаем официально, по лицензии Россельхознадзора.</p>
+          <p class="about-p">Наш фармацевтический компаундинг изготавливает препараты по рецептам ветеринаров — с точным расчётом дозы под вес, вид и состояние животного. Работаем официально, по лицензии Россельхознадзора.</p>
           <ul class="about-features" aria-label="Наши преимущества">
             <li class="about-feature">
               <span class="feature-dot" aria-hidden="true">✦</span>
@@ -213,8 +227,8 @@
         </div>
         <div class="stat-sep" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="stat-num">3</span>
-          <span class="stat-label">формы препаратов</span>
+          <span class="stat-num">12+</span>
+          <span class="stat-label">форм препаратов</span>
         </div>
         <div class="stat-sep" aria-hidden="true"></div>
         <div class="stat-item">
@@ -236,7 +250,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/services-recipes.jpg"
+                src="./images/services-recipes.jpg"
                 alt="Ветеринар выписывает рецепт на индивидуальный препарат"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -257,7 +271,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/services-flavors.webp"
+                src="./images/services-flavors.jpg"
                 alt="Питомец с удовольствием принимает препарат с приятным вкусом"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -278,7 +292,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/services-doses.jpg"
+                src="./images/services-doses.jpg"
                 alt="Точное взвешивание и дозирование лекарственного препарата"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -304,7 +318,7 @@
     <section class="solutions" id="solutions" aria-labelledby="solutions-title">
       <div class="container">
         <div class="section-header" data-num="02">
-          <span class="label label-center">Форматы препаратов</span>
+          <span class="label label-center">Формы препаратов.</span>
           <h2 class="section-title section-title-center" id="solutions-title">Наши решения</h2>
         </div>
         <div class="cards-grid cards-grid-alt" role="list">
@@ -312,7 +326,7 @@
           <article class="card card-light" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/solutions-liquid.jpg"
+                src="./images/solutions-liquid.jpg"
                 alt="Жидкие лекарственные формы — суспензии и растворы для животных"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -320,7 +334,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Жидкие формы</h3>
-              <p class="card-desc">Индивидуальные суспензии, растворы и капли для удобного приёма животными.</p>
+              <p class="card-desc">Индивидуальные суспензии, пасты, растворы, капли, настои.</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -333,7 +347,7 @@
           <article class="card card-light" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/solutions-derma.jpg"
+                src="././images/solutions-derma.jpg"
                 alt="Изготовление дерматологического препарата в лаборатории"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -341,7 +355,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Дерматология</h3>
-              <p class="card-desc">Кремы, мази и гели для лечения кожных заболеваний у домашних и крупных животных.</p>
+              <p class="card-desc">Крема, мази, гели, присыпки, порошки.</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -354,7 +368,7 @@
           <article class="card card-light" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/solutions-solid.jpg"
+                src="./images/solutions-solid.jpg"
                 alt="Твёрдые формы препаратов — таблетки и капсулы для животных"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -362,7 +376,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Твёрдые формы</h3>
-              <p class="card-desc">Жевательные таблетки, порошки, суппозитории и прочие твёрдые лекарственные формы.</p>
+              <p class="card-desc">Жевательные таблетки, суппозитории, болюсы, порошки, пилюли.</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -389,7 +403,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/approach-clinics.jpg"
+                src="./images/approach-clinics.jpg"
                 alt="Ветеринарная клиника — профессиональные компаундинговые препараты"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -397,7 +411,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Ветеринарным клиникам</h3>
-              <p class="card-desc">Изготавливаем препараты по рецептам ваших специалистов: нестандартные дозы, редкие формы, быстрые сроки. Работаем с клиниками напрямую.</p>
+              <p class="card-desc">Ветеринарным клиникам: работаем с малыми и большими дозами, изготавливаем сложные препараты</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -410,7 +424,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/approach-breeders.jpg"
+                src="./images/approach-breeders.jpg"
                 alt="Заводчики и питомники — препараты для здоровья всего помёта"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -418,7 +432,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Заводчикам</h3>
-              <p class="card-desc">Препараты для питомников и племенных животных: профилактика, поддержание здоровья, лечение целого помёта с точной дозой под каждого.</p>
+              <p class="card-desc">Работаем с питомниками и племенными хозяйствами: профилактика,  поддержание здоровья, улучшение фертильности.</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -431,7 +445,7 @@
           <article class="card" role="listitem">
             <div class="card-img-wrap">
               <img
-                src="images/approach-owners.jpg"
+                src="./images/approach-owners.jpg"
                 alt="Владелец даёт питомцу лекарство — индивидуальный подход к лечению"
                 loading="lazy" width="640" height="430"
                 class="card-img"
@@ -439,7 +453,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">Владельцам животных</h3>
-              <p class="card-desc">Ваш питомец отказывается от таблеток? Сделаем суспензию с любимым вкусом. Нужна точная доза под вес? Рассчитаем и изготовим.</p>
+              <p class="card-desc">Владельцам: ваш питомец плохо переносит инъекции? Мы сделаем суспензию с любимым вкусом. Нужна точная дозировка по весу? Или есть хронические болезни и много лекарств? Упростим схему приема, и сделаем препарат точно для вашего любимца!</p>
               <a class="btn btn-gold btn-sm" href="tel:+79168096136">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.28-1.29a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -463,11 +477,11 @@
             id="cert-btn"
             type="button"
             aria-label="Открыть лицензию в полном размере"
-            data-src="images/certificate.webp"
+            data-src="./images/certificate.webp"
             data-alt="Лицензия Россельхознадзора №Л042-00118-77/03607161"
           >
             <img
-              src="images/certificate.webp"
+              src="./images/certificate.webp"
               alt="Лицензия Россельхознадзора №Л042-00118-77/03607161 на фармацевтическую деятельность"
               loading="lazy"
               width="640" height="460"
@@ -575,7 +589,7 @@
     <!-- ========== CTA ========== -->
     <section class="cta-banner" id="cta" aria-labelledby="cta-title">
       <div class="container cta-inner">
-        <h2 class="cta-title" id="cta-title">Ветеринар выписал рецепт?<br>Мы его изготовим.</h2>
+        <h2 class="cta-title" id="cta-title">Ветеринар выписал рецепт? Мы сами свяжемся с ним и уточним дозировки!</h2>
         <p class="cta-text">
           Звоните — и через 3–5 дней нужный препарат будет у вас.
           <a class="cta-link" href="tel:+79168096136">+7 (916) 809-61-36</a>
@@ -657,7 +671,7 @@
 
         <div class="footer-logo-col">
           <a href="#hero" class="footer-logo-link" aria-label="ВЕТАПТЕКА.ПРО — на главную">
-            <img src="images/logo.png" alt="Логотип ВЕТАПТЕКА.ПРО" width="80" height="80" class="footer-logo-img">
+            <img src="./images/logo.png" alt="Логотип ВЕТАПТЕКА.ПРО" width="80" height="80" class="footer-logo-img">
             <div class="footer-wordmark">
               <span class="footer-brandname">ВЕТАПТЕКА<em>.ПРО</em></span>
               <p class="footer-tagline">Препараты, которых нет в продаже — для тех, кого вы любите</p>
@@ -703,6 +717,7 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <p>&copy; 2026 ВЕТАПТЕКА.ПРО. Все права защищены.</p>
+        <a href="privacy.html" target="_blank" class="footer-privacy-link">Политика конфиденциальности</a>
         <p>Работаем по лицензии Россельхознадзора</p>
       </div>
     </div>
