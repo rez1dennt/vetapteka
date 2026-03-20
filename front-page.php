@@ -66,8 +66,10 @@ $tpl = get_template_directory_uri();
           </div>
         </div>
         <div class="about-text-wrap">
-          <span class="label">Кто мы</span>
-          <h2 class="section-title" id="about-title">Делаем то, чего<br>нет в обычной аптеке</h2>
+          <div class="section-header" data-num="01">
+            <span class="label">Кто мы</span>
+            <h2 class="section-title" id="about-title">Делаем то, чего<br>нет в обычной аптеке</h2>
+          </div>
           <p class="about-p">Иногда нужный препарат просто недоступен: нет нужной дозировки, неподходящая форма, животное отказывается принимать. Мы решаем именно эти задачи.</p>
           <p class="about-p">Наш фармацевтический компаундинг изготавливает препараты по рецептам ветеринаров — с точным расчётом дозы под вес, вид и состояние животного. Работаем официально, по лицензии Россельхознадзора.</p>
           <ul class="about-features" aria-label="Наши преимущества">
@@ -120,7 +122,7 @@ $tpl = get_template_directory_uri();
     <!-- ========== НАШИ УСЛУГИ ========== -->
     <section class="section-dark services" id="services" aria-labelledby="services-title">
       <div class="container">
-        <div class="section-header" data-num="01">
+        <div class="section-header" data-num="02">
           <span class="label label-center">Что мы делаем</span>
           <h2 class="section-title section-title-center" id="services-title">Наши услуги</h2>
         </div>
@@ -190,7 +192,7 @@ $tpl = get_template_directory_uri();
     <!-- ========== НАШИ РЕШЕНИЯ ========== -->
     <section class="solutions" id="solutions" aria-labelledby="solutions-title">
       <div class="container">
-        <div class="section-header" data-num="02">
+        <div class="section-header" data-num="03">
           <span class="label label-center">Формы препаратов.</span>
           <h2 class="section-title section-title-center" id="solutions-title">Наши решения</h2>
         </div>
@@ -260,7 +262,7 @@ $tpl = get_template_directory_uri();
     <!-- ========== ИНДИВИДУАЛЬНЫЙ ПОДХОД ========== -->
     <section class="approach section-dark" id="approach" aria-labelledby="approach-title">
       <div class="container">
-        <div class="section-header" data-num="03">
+        <div class="section-header" data-num="04">
           <span class="label label-center">Для кого мы работаем</span>
           <h2 class="section-title section-title-center" id="approach-title">Индивидуальный подход к лечению</h2>
           <p class="section-subtitle">Наш подход к компаундингу позволяет создавать лекарства, которые идеально подходят под физиологию и вес вашего животного, обеспечивая наилучший лечебный эффект.</p>
@@ -361,8 +363,10 @@ $tpl = get_template_directory_uri();
         </div>
 
         <div class="certificate-text-col">
-          <span class="label">Лицензия</span>
-          <h2 class="section-title" id="certificate-title">Сертифицированная аптека</h2>
+          <div class="section-header" data-num="06">
+            <span class="label">Лицензия</span>
+            <h2 class="section-title" id="certificate-title">Сертифицированная аптека</h2>
+          </div>
           <p class="cert-p">Мы работаем строго по лицензии Россельхознадзора, обеспечивая высочайшее качество каждого изготовленного препарата для здоровья ваших питомцев.</p>
           <dl class="cert-details">
             <div class="cert-row">
@@ -392,8 +396,10 @@ $tpl = get_template_directory_uri();
     <section class="contacts section-dark" id="contacts" aria-labelledby="contacts-title">
       <div class="container contacts-inner">
         <div class="contacts-text-col">
-          <span class="label">Где нас найти</span>
-          <h2 class="section-title" id="contacts-title">Контакты</h2>
+          <div class="section-header" data-num="07">
+            <span class="label">Где нас найти</span>
+            <h2 class="section-title" id="contacts-title">Контакты</h2>
+          </div>
           <address class="contacts-addr">
             <div class="contact-row">
               <span class="contact-icon" aria-hidden="true">
@@ -463,7 +469,7 @@ $tpl = get_template_directory_uri();
     <!-- ========== ЧАСТЫЕ ВОПРОСЫ ========== -->
     <section class="faq section-dark" id="faq" aria-labelledby="faq-title">
       <div class="container">
-        <div class="section-header" data-num="04">
+        <div class="section-header" data-num="08">
           <span class="label label-center">Вопросы и ответы</span>
           <h2 class="section-title section-title-center" id="faq-title">Частые вопросы</h2>
           <p class="section-subtitle">Ответы на самые частые вопросы о нашей работе.</p>

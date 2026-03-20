@@ -36,6 +36,7 @@
           <li><a class="nav-link" href="#about">О нас</a></li>
           <li><a class="nav-link" href="#services">Услуги</a></li>
           <li><a class="nav-link" href="#solutions">Решения</a></li>
+          <li><a class="nav-link" href="#vitrina">Продукция</a></li>
           <li><a class="nav-link" href="#contacts">Контакты</a></li>
           <li><a class="nav-link" href="#faq">FAQ</a></li>
         </ul>
@@ -82,6 +83,7 @@
         <li><a class="mobile-nav-link" href="#about">О нас</a></li>
         <li><a class="mobile-nav-link" href="#services">Услуги</a></li>
         <li><a class="mobile-nav-link" href="#solutions">Решения</a></li>
+        <li><a class="mobile-nav-link" href="#vitrina">Продукция</a></li>
         <li><a class="mobile-nav-link" href="#approach">Подход</a></li>
         <li><a class="mobile-nav-link" href="#certificate">Лицензия</a></li>
         <li><a class="mobile-nav-link" href="#contacts">Контакты</a></li>

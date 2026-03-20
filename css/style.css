@@ -339,6 +339,32 @@ h1, h2, h3, h4 {
 .site-header.menu-open .burger-bar:nth-child(2) { opacity: 0; }
 .site-header.menu-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* ── WordPress Admin Bar offset ──────────────────────────────── */
+/* Admin bar: 32px на десктопе, 46px на мобайле (до 782px) */
+body.admin-bar .site-header {
+  top: 32px;
+}
+body.admin-bar .mobile-menu {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  body.admin-bar .site-header {
+    top: 46px;
+  }
+  body.admin-bar .mobile-menu {
+    top: 46px;
+  }
+}
+/* scroll-padding учитывает и хедер, и admin bar */
+html:has(body.admin-bar) {
+  scroll-padding-top: calc(var(--header-h) + 32px);
+}
+@media (max-width: 782px) {
+  html:has(body.admin-bar) {
+    scroll-padding-top: calc(var(--header-h) + 46px);
+  }
+}
+
 /* ── Overlay — затемняет страницу за панелью ── */
 .menu-overlay {
   position: fixed;
@@ -659,6 +685,10 @@ body.lightbox-open .site-header {
 
 .about-text-wrap { padding-inline-start: 4px; }
 
+.about-text-wrap .section-header {
+  margin-bottom: 24px;
+}
+
 .about-p {
   color: var(--text-body);
   line-height: 1.82;
@@ -882,6 +912,11 @@ body.lightbox-open .site-header {
   grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 6vw, 88px);
   align-items: start;
+}
+
+.certificate-text-col .section-header,
+.contacts-text-col .section-header {
+  margin-bottom: 28px;
 }
 
 .contacts-addr {
@@ -1680,12 +1715,15 @@ body.lightbox-open .site-header {
 /* Light-green sections — faint green numeral */
 .services .section-header[data-num]::before,
 .approach .section-header[data-num]::before,
+.contacts .section-header[data-num]::before,
 .faq .section-header[data-num]::before {
   color: rgba(61,122,82,0.07);
 }
 
 /* Light section (solutions on linen) — faint green tint */
-.solutions .section-header[data-num]::before {
+.about .section-header[data-num]::before,
+.solutions .section-header[data-num]::before,
+.certificate .section-header[data-num]::before {
   color: rgba(61,122,82,0.065);
 }
 
@@ -2139,9 +2177,21 @@ body.lightbox-open .site-header {
 
 /* Load more */
 .vitrina-more { display: flex; justify-content: center; margin-top: clamp(32px, 4vw, 48px); }
-.vitrina-more__btn { gap: 10px; min-width: 220px; justify-content: center; }
+.vitrina-more__btn {
+  gap: 10px;
+  min-width: 220px;
+  justify-content: center;
+  color: var(--text);
+  border-color: rgba(16,24,21,0.16);
+  background: rgba(255,255,255,0.42);
+}
+.vitrina-more__btn:hover {
+  color: var(--text);
+  border-color: var(--green);
+  background: rgba(61,122,82,0.08);
+}
 .vitrina-more__btn.is-loading { opacity: 0.65; cursor: not-allowed; pointer-events: none; }
-.vitrina-more__count { font-size: 12px; opacity: 0.7; font-weight: 400; }
+.vitrina-more__count { font-size: 12px; opacity: 1; font-weight: 400; color: var(--text-muted); }
 
 /* Responsive */
 @media (max-width: 768px) { .vitrina-grid { grid-template-columns: repeat(2, 1fr); } }
