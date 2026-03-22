@@ -43,6 +43,38 @@ function vetapteka_register_options_pages() {
     ] );
 
     acf_add_options_sub_page( [
+        'page_title'  => 'Статистика',
+        'menu_title'  => 'Статистика',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-stats',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Услуги',
+        'menu_title'  => 'Услуги',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-services',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Решения',
+        'menu_title'  => 'Решения',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-solutions',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Подход',
+        'menu_title'  => 'Подход',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-approach',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
         'page_title'  => 'Контакты',
         'menu_title'  => 'Контакты',
         'parent_slug' => 'vetapteka',
@@ -55,6 +87,46 @@ function vetapteka_register_options_pages() {
         'menu_title'  => 'Витрина',
         'parent_slug' => 'vetapteka',
         'menu_slug'   => 'vetapteka-vitrina',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Лицензия',
+        'menu_title'  => 'Лицензия',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-certificate',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'CTA',
+        'menu_title'  => 'CTA',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-cta',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'FAQ',
+        'menu_title'  => 'FAQ',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-faq',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Футер',
+        'menu_title'  => 'Футер',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-footer',
+        'capability'  => 'edit_posts',
+    ] );
+
+    acf_add_options_sub_page( [
+        'page_title'  => 'Политика конфиденциальности',
+        'menu_title'  => 'Политика',
+        'parent_slug' => 'vetapteka',
+        'menu_slug'   => 'vetapteka-policy',
         'capability'  => 'edit_posts',
     ] );
 }

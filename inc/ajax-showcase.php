@@ -19,18 +19,16 @@ function vetapteka_showcase_load_more() {
 
     ob_start();
     foreach ( $chunk as $product ) {
-        $name      = esc_html( $product['product_name'] ?? '' );
-        $desc      = esc_html( $product['product_description'] ?? '' );
-        $price     = esc_html( $product['product_price'] ?? '' );
-        $badge     = esc_html( $product['product_badge'] ?? '' );
+        $name      = (string) ( $product['product_name'] ?? '' );
+        $desc      = (string) ( $product['product_description'] ?? '' );
+        $price     = (string) ( $product['product_price'] ?? '' );
+        $badge     = (string) ( $product['product_badge'] ?? '' );
         $available = ! empty( $product['product_available'] );
         $img       = $product['product_image'] ?? null;
         $img_url   = $img
-            ? esc_url( $img['sizes']['medium_large'] ?? $img['sizes']['large'] ?? $img['url'] )
-            : esc_url( get_template_directory_uri() . '/images/флаконы.jpg' );
-        $img_alt   = $img
-            ? esc_attr( $img['alt'] ?: $name )
-            : esc_attr( $name );
+            ? vetapteka_get_image_url( $img, 'vetapteka-card' )
+            : vetapteka_get_optimized_asset_url( get_template_directory_uri() . '/images/флаконы.jpg' );
+        $img_alt   = vetapteka_get_image_alt( $img, $name );
 
         echo vetapteka_build_card_html( $name, $desc, $price, $badge, $available, $img_url, $img_alt );
     }

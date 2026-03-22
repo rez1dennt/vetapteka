@@ -19,6 +19,25 @@ const lbBackdrop    = document.getElementById('lightbox-backdrop');
 const lbClose       = document.getElementById('lightbox-close');
 const lbImg         = document.getElementById('lightbox-img');
 const lbCaption     = document.getElementById('lightbox-caption');
+const adminBar      = document.getElementById('wpadminbar');
+
+const syncAdminBarOffset = () => {
+  const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+  document.documentElement.style.setProperty('--admin-bar-offset', adminBarHeight + 'px');
+};
+
+syncAdminBarOffset();
+window.addEventListener('load', syncAdminBarOffset, { passive: true });
+window.addEventListener('resize', syncAdminBarOffset, { passive: true });
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', syncAdminBarOffset, { passive: true });
+}
+
+if (adminBar && typeof ResizeObserver !== 'undefined') {
+  const adminBarObserver = new ResizeObserver(syncAdminBarOffset);
+  adminBarObserver.observe(adminBar);
+}
 
 /* ════════════════════════════════════════════════════════════
    1. STICKY HEADER — add .scrolled class after 80px scroll
@@ -137,6 +156,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', targetId);
+    } else {
+      window.location.hash = targetId;
+    }
   });
 });
 

@@ -97,8 +97,9 @@
         const newOffset = parseInt(result.new_offset, 10);
         const remaining = Math.max(0, total - newOffset);
         const countEl   = btn.querySelector('.vitrina-more__count');
+        const countLabel = btn.dataset.countLabel || 'ещё';
         if (countEl) {
-          countEl.textContent = '(ещё ' + remaining + ')';
+          countEl.textContent = '(' + countLabel + ' ' + remaining + ')';
         }
         btn.dataset.remaining = remaining;
 

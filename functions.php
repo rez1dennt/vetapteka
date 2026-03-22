@@ -22,6 +22,12 @@ function vetapteka_setup() {
         'style',
         'script',
     ] );
+
+    add_image_size( 'vetapteka-hero', 1920, 1920, false );
+    add_image_size( 'vetapteka-section', 1280, 1280, false );
+    add_image_size( 'vetapteka-card', 960, 960, false );
+    add_image_size( 'vetapteka-placeholder', 1280, 1280, false );
+    add_image_size( 'vetapteka-logo', 160, 160, false );
 }
 add_action( 'after_setup_theme', 'vetapteka_setup' );
 
@@ -54,58 +60,27 @@ function vetapteka_scripts() {
         true
     );
 
-    // Showcase JS
-    wp_enqueue_script(
-        'vetapteka-showcase',
-        get_template_directory_uri() . '/js/showcase.js',
-        [ 'vetapteka-main' ],
-        wp_get_theme()->get( 'Version' ),
-        true
-    );
+    if ( is_front_page() ) {
+        wp_enqueue_script(
+            'vetapteka-showcase',
+            get_template_directory_uri() . '/js/showcase.js',
+            [ 'vetapteka-main' ],
+            wp_get_theme()->get( 'Version' ),
+            true
+        );
 
-    wp_localize_script(
-        'vetapteka-showcase',
-        'vetaptekaAjax',
-        [
-            'url'     => admin_url( 'admin-ajax.php' ),
-            'nonce'   => wp_create_nonce( 'vetapteka_showcase_nonce' ),
-            'perPage' => 9,
-        ]
-    );
+        wp_localize_script(
+            'vetapteka-showcase',
+            'vetaptekaAjax',
+            [
+                'url'     => admin_url( 'admin-ajax.php' ),
+                'nonce'   => wp_create_nonce( 'vetapteka_showcase_nonce' ),
+                'perPage' => 9,
+            ]
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'vetapteka_scripts' );
-
-/* ──────────────────────────────────────────────────────────────
-   SCHEMA.ORG JSON-LD
-────────────────────────────────────────────────────────────── */
-function vetapteka_schema_jsonld() {
-    ?>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["Pharmacy", "LocalBusiness"],
-  "name": "ВЕТАПТЕКА.ПРО",
-  "description": "Компаундинговая ветеринарная аптека. Индивидуальные лекарственные препараты для животных.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "ул. Алма-Атинская, д. 9, к. 2",
-    "addressLocality": "Москва",
-    "addressCountry": "RU",
-    "postalCode": "115408"
-  },
-  "telephone": "+79168096136",
-  "url": "https://vetapteka.pro",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  }
-}
-</script>
-    <?php
-}
-add_action( 'wp_head', 'vetapteka_schema_jsonld' );
 
 /* ──────────────────────────────────────────────────────────────
    HELPER: Phone SVG
@@ -132,7 +107,10 @@ function vetapteka_build_card_html(
     string $img_url,
     string $img_alt
 ): string {
-    $phone_svg = vetapteka_phone_svg( 15 );
+    $phone_svg        = vetapteka_phone_svg( 15 );
+    $badge_fallback   = vetapteka_get_option_value( 'vitrina_unavailable_badge_text', '' );
+    $button_text      = vetapteka_get_option_value( 'vitrina_card_button_text', '' );
+    $phone_href       = vetapteka_get_phone_href( vetapteka_get_option_value( 'contacts_phone_raw', '' ) );
 
     $badge_html = '';
     if ( $badge ) {
@@ -140,8 +118,11 @@ function vetapteka_build_card_html(
             '<span class="showcase-card__badge">%s</span>',
             esc_html( $badge )
         );
-    } elseif ( ! $available ) {
-        $badge_html = '<span class="showcase-card__badge showcase-card__badge--unavailable">Нет в наличии</span>';
+    } elseif ( ! $available && $badge_fallback ) {
+        $badge_html = sprintf(
+            '<span class="showcase-card__badge showcase-card__badge--unavailable">%s</span>',
+            esc_html( $badge_fallback )
+        );
     }
 
     $price_html = $price
@@ -149,7 +130,16 @@ function vetapteka_build_card_html(
         : '';
 
     $desc_html = $desc
-        ? sprintf( '<p class="showcase-card__desc">%s</p>', esc_html( $desc ) )
+        ? sprintf( '<p class="showcase-card__desc">%s</p>', vetapteka_format_multiline_text( $desc ) )
+        : '';
+
+    $button_html = $button_text
+        ? sprintf(
+            '<a class="btn btn-gold btn-sm showcase-card__btn" href="%s">%s %s</a>',
+            esc_url( $phone_href ),
+            $phone_svg,
+            esc_html( $button_text )
+        )
         : '';
 
     return sprintf(
@@ -162,9 +152,7 @@ function vetapteka_build_card_html(
         .   '<h3 class="showcase-card__name">%s</h3>'
         .   '%s'
         .   '%s'
-        .   '<a class="btn btn-gold btn-sm showcase-card__btn" href="tel:+79168096136">'
-        .     '%s Заказать'
-        .   '</a>'
+        .   '%s'
         . '</div>'
         . '</article>',
         $badge_html,
@@ -173,7 +161,7 @@ function vetapteka_build_card_html(
         esc_html( $name ),
         $desc_html,
         $price_html,
-        $phone_svg
+        $button_html
     );
 }
 
@@ -181,5 +169,9 @@ function vetapteka_build_card_html(
    INCLUDE FILES
 ────────────────────────────────────────────────────────────── */
 require_once get_template_directory() . '/inc/acf-options.php';
+require_once get_template_directory() . '/inc/helpers.php';
+require_once get_template_directory() . '/inc/performance.php';
 require_once get_template_directory() . '/inc/acf-fields.php';
+require_once get_template_directory() . '/inc/acf-seed.php';
+require_once get_template_directory() . '/inc/yoast-setup.php';
 require_once get_template_directory() . '/inc/ajax-showcase.php';
